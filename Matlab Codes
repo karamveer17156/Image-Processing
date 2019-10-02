@@ -1,1 +1,36 @@
+r = [0,1,2,3]; %input values of r
+pr = [0.4,0.2,0,0.4]; %input- their corresponding probabilities
+BitDepth = 2; %input
+L = 2*BitDepth;
+sum =0; %variable to calculate the cumulative frq
+for i = 1 : L
+    sum = sum + pr(i);  %CDF
+    cdf(i) = round((L-1)*sum); %round(L-1 *cdf) 
+    
+end
+%cdf array is rounded off and stores the values of the mapped output 
+%for eg. 1 and 2 are mapped to 2, so we have to add their resp.
+%probabilities and plot them using stem fucntion
+probsum = zeros([1,4]); % zero matrix
+for i = 1:4
+    %get the mapped value 
+    mapped = cdf(i);
+    %probability of mapped variable 
+    probsum(mapped+1) = probsum(mapped+1)+pr(i);
+end
+probsum %Displaying discrete values
+r = 1:4;
+%Ploting
+stem(r,probsum);
+title('Histogram Equilization');
+xlabel('s');
+ylabel('P(s)');
+
+    
+
+
+
+
+    
+
 
